@@ -1,7 +1,7 @@
 package benchmark;
 
-import org.inj.rle.RLDecoder;
-import org.inj.rle.RLEncoder;
+import com.inj.rle.RLDecoder;
+import com.inj.rle.RLEncoder;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
