@@ -128,7 +128,10 @@ public class RLEncoder {
     }
 
     public void encode(String filename) throws IOException, URISyntaxException {
-        Path input = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
+        Path input = Paths.get(filename);
+        if (!Files.exists(input)) {
+            input = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
+        }
         System.out.println("Encoding file: " + input);
 
         StringBuilder sb = new StringBuilder();
@@ -142,7 +145,10 @@ public class RLEncoder {
 
 
     public void encodeParallel(String filename, int parallelism) throws IOException, URISyntaxException {
-        Path input = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
+        Path input = Paths.get(filename);
+        if (!Files.exists(input)) {
+            input = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
+        }
         System.out.println("Encoding file: " + input);
 
         StringBuilder sb = new StringBuilder();

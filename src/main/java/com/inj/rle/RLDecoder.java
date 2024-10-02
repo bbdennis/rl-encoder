@@ -34,7 +34,10 @@ public class RLDecoder {
     }
 
     public void decode(String filename) throws IOException, URISyntaxException {
-        Path encodedFile = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
+        Path encodedFile = Paths.get(filename);
+        if (!Files.exists(encodedFile)) {
+            encodedFile = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
+        }
         List<String> input = Files.readAllLines(encodedFile);
 
         byte[] outputBytes = decode(input);
