@@ -10,9 +10,14 @@ public class Main {
         encoder.encode(filename);
         encoder.encodeParallel(filename, 8);
 
+//        RLDecoder decoder = new RLDecoder();
+//        decoder.decode(filename + "_encoded.csv");
+//        decoder.decode(filename + "_encodedParallel.csv");
+    }
+
+    private void decode(String filename) throws URISyntaxException, IOException {
         RLDecoder decoder = new RLDecoder();
-        decoder.decode(filename + "_encoded.csv");
-        decoder.decode(filename + "_encodedParallel.csv");
+        decoder.decode(filename);
     }
 
     public static void main(String[] args) throws URISyntaxException, IOException {
@@ -24,7 +29,14 @@ public class Main {
         String filename = args[0];
 
         Main app = new Main();
-        app.encode(filename);
+        if (args.length == 2) {
+            String mode = args[1];
+            if (mode.equalsIgnoreCase("-d")) {
+                app.decode(filename);
+            }
+        } else {
+            app.encode(filename);
+        }
 
     }
 }
